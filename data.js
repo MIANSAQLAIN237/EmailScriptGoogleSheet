@@ -1,6 +1,6 @@
 exports.htmlData = {
   //   output: "./public/picture.png",
-  output: "https://backend11q.herokuapp.com/public/picture.png",
+  output: "https://backend11q.herokuapp.com/picture.png",
   html: `<!doctype html>
     <html lang="en">
         <head>

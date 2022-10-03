@@ -206,7 +206,7 @@ function apiCallFunctionGmail(req, res) {
   //   success: true,
   // });
 }
-apiCallFunctionGmail();
+// apiCallFunctionGmail();
 console.log("this hit");
 app.post("/api/post", function (req, res) {
   console.log("re", req.body);

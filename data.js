@@ -1,6 +1,5 @@
 exports.htmlData = {
-  //   output: "./public/picture.png",
-  output: "https://backend11q.herokuapp.com/picture.png",
+  output: "./public/picture.png",
   html: `<!doctype html>
     <html lang="en">
         <head>
@@ -55,7 +54,21 @@ exports.htmlData = {
             function between(min, max) {
                     return Math.floor(Math.random() * (max - min) + min);
                 }
-            
+					const event = new Date();
+            //    var time = event.getHours() + ":" + event.getMinutes() + ":" + event.getSeconds();
+            function formatAMPM(date) {
+                var hours = date.getHours();
+                var minutes = date.getMinutes();
+                var seconds = date.getSeconds();
+                var ampm = hours >= 12 ? "pm" : "am";
+                hours = hours % 12;
+                hours = hours ? hours : 12; // the hour '0' should be '12'
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+                var strTime = hours + ":" + minutes + ":" + seconds + " " + ampm;
+                return strTime;
+              }
+
                 var Outgoing = between(450, 500);
                 var valuegetpoint = between(50.9, 98.9);
                 var valueget = Outgoing + "." + valuegetpoint;
@@ -82,7 +95,14 @@ exports.htmlData = {
                             <h6 style="font-weight: bold;"> Order ID :<script>
                                 document.write(theRandomNumber);
                                 </script>   
-                                <br> Date: 08/18/2022 <br>Amount:<script>document.write("$",Outgoing)</script>
+                                <br> Date:  <script>
+                                document.write(event.toDateString());
+                                      </script>
+                                      <br/>
+                                      Time: <script>
+                                      document.write(formatAMPM(event));
+                                      </script>
+                                <br>Amount:<script>document.write("$",Outgoing)</script>
                                 <br>Payment Module: Auto-Debit
                             </h6>
                             </div>

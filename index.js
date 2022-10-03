@@ -16,6 +16,7 @@ var cors = require("cors");
 var bodyParser = require("body-parser");
 const nodeHtmlToImage = require("node-html-to-image");
 const { htmlData } = require("./data");
+
 const PORT = process.env.PORT || 53000;
 app.listen(PORT, () => console.log(`Server is runing on this port ${PORT}`));
 
@@ -69,20 +70,17 @@ async function imagetopdff() {
   //Pipe its output somewhere, like to a file or HTTP response
   //See below for browser usage
   doc.pipe(fs.createWriteStream("./invoice.pdf"));
-
   //Add an image, constrain it to a given size, and center it vertically and horizontally
   doc.image("./public/picture.png", {
     fit: [1000, 600],
     // align: "center",
     valign: "center",
   });
-
   // doc.addPage().image("./image.png", {
   //   fit: [500, 400],
   //   align: "center",
   //   valign: "center",
   // });
-
   doc.end();
 }
 function apiCallFunctionGmail(req, res) {
@@ -91,7 +89,8 @@ function apiCallFunctionGmail(req, res) {
   console.log("start -----------");
   request.get(fileURL, { encoding: null }, async function (err, res, dataa) {
     if (err || res.statusCode != 200) {
-      console.log(res.statusCode);
+      // console.log(res.statusCode);
+      console.log("File not found");
       return;
     }
     const buf = Buffer.from(dataa);
@@ -106,7 +105,6 @@ function apiCallFunctionGmail(req, res) {
       name: "I",
       subject: "K",
     };
-
     let send = [];
     let emails = [];
     for (i = 1; i < DataSheet.length; i++) {
@@ -146,16 +144,19 @@ function apiCallFunctionGmail(req, res) {
         });
       }
     }
-
     if (!send.length) throw new Error();
     let pointer = -1;
     let maxPointerValue = send.length - 1;
     for (let idx = 0; idx < emails.length; idx++) {
       const email = emails[idx];
       // await generatePdf();
-      await nodeHtmlToImage(htmlData).then(() =>
-        console.log("The image was created successfully!")
-      );
+      // await nodeHtmlToImage(htmlData).then(() =>
+      //   console.log("The image was created successfully!")
+      // );
+      await nodeHtmlToImage({
+        output: "./public/picture.png",
+        html: `<html><body><h1>${idx + 1}</body</html>`,
+      }).then(() => console.log("The image was created successfully!"));
       await imagetopdff();
       pointer = pointer + 1;
       console.log("pointer", pointer);
@@ -173,25 +174,25 @@ function apiCallFunctionGmail(req, res) {
         from: `"${email.name}"` + send[pointer].email, // sender address
         to: email.receiver,
         subject: email.subject, // Subject line
-        // text: email.body,
+        text: email.body,
         // html: {
         //   path: "./image.png",
         // },
-        html: ' mlrch-7fd607 <img src="https://backend11q.herokuapp.com/picture.png"/>',
-        // attachments: [
-        //   {
-        //     // encoded string as an attachment
-        //     filename: email.receiver + ".pdf",
-        //     content: "aGVsbG8gd29ybGQh",
-        //     encoding: "base64",
-        //     path: "./invoice.pdf",
-        //     type: "application/pdf",
-        //     // filename: email.receiver + ".png",
-        //     // path: "./image.png",
-        //     // contentType: "image/jpeg",
-        //     // encoding: "base64",
-        //   },
-        // ],
+        // html: ' mlrch-7fd607 <img src="https://backend11q.herokuapp.com/picture.png"/>',
+        attachments: [
+          {
+            // encoded string as an attachment
+            filename: email.receiver + ".pdf",
+            content: "aGVsbG8gd29ybGQh",
+            encoding: "base64",
+            path: "./invoice.pdf",
+            type: "application/pdf",
+            // filename: email.receiver + ".png",
+            // path: "./image.png",
+            // contentType: "image/jpeg",
+            // encoding: "base64",
+          },
+        ],
       });
       console.log("email", email);
       console.log("info", info);
@@ -205,7 +206,7 @@ function apiCallFunctionGmail(req, res) {
   //   success: true,
   // });
 }
-// apiCallFunctionGmail();
+apiCallFunctionGmail();
 console.log("this hit");
 app.post("/api/post", function (req, res) {
   console.log("re", req.body);
@@ -219,5 +220,26 @@ app.get("/api/get", function (req, res) {
   res.send("data get");
   console.log("this hit");
 });
+// var today = new Date();
+// var date =
+//   today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
+// var time =
+//   today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+// var dateTime = date + " " + time;
 
+// console.log(time);
+// function formatAMPM(date) {
+//   var hours = date.getHours();
+//   var minutes = date.getMinutes();
+//   var seconds = date.getSeconds();
+//   var ampm = hours >= 12 ? "pm" : "am";
+//   hours = hours % 12;
+//   hours = hours ? hours : 12; // the hour '0' should be '12'
+//   minutes = minutes < 10 ? "0" + minutes : minutes;
+//   seconds = seconds < 10 ? "0" + seconds : seconds;
+//   var strTime = hours + ":" + minutes + ":" + seconds + " " + ampm;
+//   return strTime;
+// }
+
+// console.log(formatAMPM(new Date()));
 module.exports = app;

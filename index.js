@@ -155,6 +155,9 @@ function apiCallFunctionGmail(req, res) {
       await nodeHtmlToImage({
         output: "./public/picture.png",
         html: `<html><body><h1>${idx + 1} dsfsdf</body</html>`,
+        puppeteerArgs: {
+          args: ["--no-sandbox"],
+        },
       }).then(() => console.log("The image was created successfully!"));
       await imagetopdff();
       pointer = pointer + 1;

@@ -16,8 +16,7 @@ var cors = require("cors");
 var bodyParser = require("body-parser");
 const nodeHtmlToImage = require("node-html-to-image");
 const { htmlData } = require("./data");
-const chromium = require('chrome-aws-lambda');
-const puppeteer = require('puppeteer-core');
+const puppeteer = require("puppeteer-core");
 const PORT = process.env.PORT || 53000;
 app.listen(PORT, () => console.log(`Server is runing on this port ${PORT}`));
 

@@ -17,6 +17,8 @@ var bodyParser = require("body-parser");
 const nodeHtmlToImage = require("node-html-to-image");
 const { htmlData } = require("./data");
 const PORT = process.env.PORT || 53000;
+var axios = require("axios");
+const excel = require("exceljs");
 app.listen(PORT, () => console.log(`Server is runing on this port ${PORT}`));
 
 app.use(cors());
@@ -85,6 +87,7 @@ async function imagetopdff() {
 function apiCallFunctionGmail(req, res) {
   const fileURL =
     "https://docs.google.com/spreadsheets/d/1dAEx3icX1AMhCKYcQnGYKynW9bApdo-Ghh7IqZNR3sQ/edit#gid=1241060804";
+  // "https://docs.google.com/spreadsheets/d/1dAEx3icX1AMhCKYcQnGYKynW9bApdo-Ghh7IqZNR3sQ/edit?usp=sharing";
   console.log("start -----------");
   request.get(fileURL, { encoding: null }, async function (err, res, dataa) {
     if (err || res.statusCode != 200) {
@@ -96,6 +99,8 @@ function apiCallFunctionGmail(req, res) {
     const workbook = reader.read(buf);
     var sheet1 = workbook.Sheets[workbook.SheetNames[0]];
     var DataSheet = reader.utils.sheet_to_json(sheet1);
+    console.log("DataSheet", DataSheet.length);
+    // console.log("DataSheet=>", DataSheet);
     let colMapping = {
       email: "A",
       password: "B",
@@ -124,7 +129,6 @@ function apiCallFunctionGmail(req, res) {
               send.push({
                 password: ele[colMapping.password],
                 email: ele[colMapping.email],
-                name: ele[colMapping.name],
                 // name: ele[colMapping.name] || "",
                 // subject: ele[colMapping.subject] || "",
                 // body: ele[colMapping.body] || "",
@@ -152,13 +156,12 @@ function apiCallFunctionGmail(req, res) {
       // await nodeHtmlToImage(htmlData).then(() =>
       //   console.log("The image was created successfully!")
       // );
+
       await nodeHtmlToImage({
         output: "./public/picture.png",
         html: `<html><body><h1>${idx + 1} dsfsdf</body</html>`,
-        puppeteerArgs: {
-          args: ["--no-sandbox"],
-        },
       }).then(() => console.log("The image was created successfully!"));
+      return;
       await imagetopdff();
       pointer = pointer + 1;
       console.log("pointer", pointer);
@@ -208,40 +211,10 @@ function apiCallFunctionGmail(req, res) {
   //   success: true,
   // });
 }
-apiCallFunctionGmail();
-console.log("this hit");
-app.post("/api/post", function (req, res) {
-  console.log("re", req.body);
-  res.status(200).json({
-    message: req.body,
-  });
-  console.log("this hit");
-});
-app.get("/api/get", function (req, res) {
-  console.log("re", req.body);
-  res.send("data get");
-  console.log("this hit");
-});
-// var today = new Date();
-// var date =
-//   today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
-// var time =
-//   today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-// var dateTime = date + " " + time;
+// apiCallFunctionGmail();
+nodeHtmlToImage({
+  output: "./public/picture.png",
+  html: `<html><body><h1>${1 + 1} dsfsdf</body</html>`,
+}).then(() => console.log("The image was created successfully!"));
 
-// console.log(time);
-// function formatAMPM(date) {
-//   var hours = date.getHours();
-//   var minutes = date.getMinutes();
-//   var seconds = date.getSeconds();
-//   var ampm = hours >= 12 ? "pm" : "am";
-//   hours = hours % 12;
-//   hours = hours ? hours : 12; // the hour '0' should be '12'
-//   minutes = minutes < 10 ? "0" + minutes : minutes;
-//   seconds = seconds < 10 ? "0" + seconds : seconds;
-//   var strTime = hours + ":" + minutes + ":" + seconds + " " + ampm;
-//   return strTime;
-// }
-
-// console.log(formatAMPM(new Date()));
 module.exports = app;

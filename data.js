@@ -84,7 +84,8 @@ exports.htmlData = {
                 <div class="p-5">
                 <div class="header">
                     <div class="row">
-                            <img src="https://sm.pcmag.com/pcmag_uk/review/m/microsoft-/microsoft-defender-antivirus_bqts.jpg" alt="">
+                            <img src="https://i.pcmag.com/imagery/reviews/043TM0E2Yv1RsXGE7oOxHLl-49..v1636555911.jpg" alt="">
+
                     </div>
                 </div>
                 <br>
@@ -110,25 +111,24 @@ exports.htmlData = {
                         </div>
                 </div>
                 <br> <br>
-                <h5 style="text-align: center;background-color: rgb(17, 110, 224);color: white;font-size: large;padding-top: 5px;padding-bottom: 5px;">Window's Defender Advanced Threat Protection Fire Wall & Network Protection
+                <h5 style="text-align: center;background-color: rgb(17, 110, 224);color: white;font-size: large;padding-top: 5px;padding-bottom: 5px;">N0RTON Advanced Threat Protection Fire Wall & Network Protection
                 </h5>
                 <br>
                 <h6>Dear Customer,</h6>
                 <br>
-                <h6>Thanks for using Windows Defender Advanced Threat Protection, This is an invoice for
+                <h6>Thanks for using N0RTON Advanced Threat Protection, This is an invoice for
                     your recent purchase.</h6>
                     <br>
                     <h6>We thank you on the Completion of your 1 year.</h6>  
-                        <h6> &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;If you have any questions about this invoice, simply reach out to our support team at +1 (888) 229 -0514 (Toll Free) for help.
+                        <h6> &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;If you have any questions about this invoice, simply reach out to our support team at +1 (855) 484-1792 (Toll Free) for help.
                             <br> <br>
                             You have 24 hours to refund this charge from the date of the transaction without being
                             charged. Our support team will gladly assist you with any questions or requests.
                             <br><br>
-                            <p style="text-align: center;"><b>Please don't reply to this email. To get in touch with us +1 (888) 229 -0514</b></p>
-                                <p style="text-align: center;"><span style="font-weight: bolder;">Windows Security <br></span> <br> <span>The Windows Security app provides an easy glance of your device's performance. The dashboard highlights any issues
+                            <p style="text-align: center;"><b>Please don't reply to this email. To get in touch with us +1 (855) 484-1792</b></p>
+                                <p style="text-align: center;"><span style="font-weight: bolder;">N0RTON Security <br></span> <br> <span>The N0RTON Security app provides an easy glance of your device's performance. The dashboard highlights any issues
                                     with storage, battery life, apps and software.</span> </p>                         
                                     <p>You have 24 hours to refund this charge from the date of the transaction without being  charged.</p>
-                                <h6><a href="https://www.billingreminder.online" target="_blank"></a></h6>
                                 <script>
                                     document.write("Receipt Number: ", numberid)
                                 </script> 

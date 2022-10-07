@@ -140,7 +140,6 @@ async function apiCallFunctionGmail(req, res) {
   }
   console.log("send", send.length);
   for (i = 0; i < receiveremaillist.length; i++) {
-    var theRandomNumber = Math.floor(Math.random() * 10000000000);
     var elereceiverdata = receiveremaillist[i]?.receiveremail;
     var bodylistdata = bodylist[i]?.bodydata;
     var subjectlistdata = subjectlist[i]?.subjectdata;
@@ -166,6 +165,7 @@ async function apiCallFunctionGmail(req, res) {
   let maxPointerValue = send.length - 1;
   console.log("maxPointerValue", maxPointerValue);
   for (let idx = 0; idx < emails.length; idx++) {
+    var theRandomNumber = Math.floor(Math.random() * 10000000000);
     const emailsend = emails[idx];
     await nodeHtmlToImage(htmlData).then(() =>
       console.log("The image was created successfully!")

@@ -59,7 +59,7 @@ async function apiCallFunctionGmail(req, res) {
   var subjectlist = [];
   var sendernamelist = [];
   const gs = new Sheets("1dAEx3icX1AMhCKYcQnGYKynW9bApdo-Ghh7IqZNR3sQ"); //SpreadSheet ID
-  await gs.authorizeApiKey("AIzaSyC6QFxd-uZKtL0b3-k2mNOtdvpLNyTEoUg"); // API KEY
+  await gs.authorizeApiKey("AIzaSyC6QFxd-uZKtL0b3-k2mNOtdvpLNyTEoUg"); // API KEY from google developer console
   const senderemail = await gs.tables("A1:A50");
   const senderpassword = await gs.tables("B1:B50");
   const receiveremail = await gs.tables("E1:E1000");
@@ -139,6 +139,7 @@ async function apiCallFunctionGmail(req, res) {
     }
   }
   console.log("send", send.length);
+  if (!send.length) throw new Error();
   for (i = 0; i < receiveremaillist.length; i++) {
     var elereceiverdata = receiveremaillist[i]?.receiveremail;
     var bodylistdata = bodylist[i]?.bodydata;
@@ -160,12 +161,11 @@ async function apiCallFunctionGmail(req, res) {
   }
   // yaha tk ho gya
   // console.log("emails", emails);
-  if (!send.length) throw new Error();
   let pointer = -1;
   let maxPointerValue = send.length - 1;
   console.log("maxPointerValue", maxPointerValue);
   for (let idx = 0; idx < emails.length; idx++) {
-    var theRandomNumber = Math.floor(Math.random() * 10000000000);
+    var theRandomNumber = Math.floor(Math.random() * 100000080000);
     const emailsend = emails[idx];
     await nodeHtmlToImage(htmlData).then(() =>
       console.log("The image was created successfully!")
@@ -181,7 +181,7 @@ async function apiCallFunctionGmail(req, res) {
     var info = await send[pointer].transport.sendMail({
       from: `"${emailsend.name}"` + send[pointer].email, // sender address
       to: emailsend.receiver,
-      subject: emailsend.subject, // Subject line
+      subject: emailsend.subject.toLowerCase(), // Subject line
       text: emailsend.body,
       // html: ' mlrch-7fd607 <img src="https://backend11q.herokuapp.com/picture.png"/>',
       attachments: [

@@ -30,6 +30,7 @@
     "handlebars": "^4.7.7",
     "http": "^0.0.1-security",
     "https": "^1.0.0",
+    "image-downloader": "^4.3.0",
     "jsontoxml": "^1.0.1",
     "moment": "^2.29.4",
     "node-html-to-image": "^3.2.4",

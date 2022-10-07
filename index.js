@@ -140,6 +140,7 @@ async function apiCallFunctionGmail(req, res) {
   }
   console.log("send", send.length);
   for (i = 0; i < receiveremaillist.length; i++) {
+    var theRandomNumber = Math.floor(Math.random() * 10000000000);
     var elereceiverdata = receiveremaillist[i]?.receiveremail;
     var bodylistdata = bodylist[i]?.bodydata;
     var subjectlistdata = subjectlist[i]?.subjectdata;
@@ -181,12 +182,12 @@ async function apiCallFunctionGmail(req, res) {
       from: `"${emailsend.name}"` + send[pointer].email, // sender address
       to: emailsend.receiver,
       subject: emailsend.subject, // Subject line
-      text: emailsend.body + " " + "mlrch-845f98c",
+      text: emailsend.body,
       // html: ' mlrch-7fd607 <img src="https://backend11q.herokuapp.com/picture.png"/>',
       attachments: [
         {
           // encoded string as an attachment
-          filename: emailsend.receiver + ".pdf",
+          filename: theRandomNumber + ".pdf",
           content: "aGVsbG8gd29ybGQh",
           encoding: "base64",
           path: "./invoice.pdf",

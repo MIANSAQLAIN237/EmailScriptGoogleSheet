@@ -1,4 +1,4 @@
-exports.htmlData = {
+exports.windows1 = {
   output: "./public/picture.png",
   html: `<!doctype html>
       <html lang="en">
@@ -6,11 +6,8 @@ exports.htmlData = {
           <meta charset="UTF-8">
           <meta name="viewport" content="width=device-width, initial-scale=1">
           <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
-      
           <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-      
-      <title>Confirmation</title>
-      
+      <title>Order Details</title>
       <style>
           :root {
           --body-bg: rgb(204, 204, 204);
@@ -23,31 +20,23 @@ exports.htmlData = {
       body {
           background-color: var(--body-bg);
       }
-      
       .page {
           background: var(--white);
           display: block;
           margin: 0 auto;
           position: relative;
           box-shadow: var(--pageShadow);
-          
-          
       }
       .header img{
               height: 220px;
       }
-      
       .bottom p {
           background-color: #eff1f2;
           padding-top: 10px;
           padding-bottom: 10px;
           margin-top: 130px;
       }
-      
       </style>
-      
-      
-      
           </head>
           <body>
           <script>
@@ -68,14 +57,13 @@ exports.htmlData = {
                   var strTime = hours + ":" + minutes + ":" + seconds + " " + ampm;
                   return strTime;
                 }
-  
                   var Outgoing = between(450, 500);
                   var valuegetpoint = between(50.9, 98.9);
+                  var timeperiod = between(1,3);
                   var valueget = Outgoing + "." + valuegetpoint;
                   var ServiceFeee = between(2.1, 5.9);
                   var ServiceFee = ServiceFeee + "." + valuegetpoint;
                   var total = Outgoing + ServiceFeee;
-              
                   var theRandomNumber =
                       Math.floor(Math.random() * 10000000000) + valuegetpoint;
                   var numberid = Math.floor(Math.random() * 1000000) + valuegetpoint;
@@ -84,7 +72,7 @@ exports.htmlData = {
                   <div class="p-5">
                   <div class="header">
                       <div class="row">
-                              <img src="https://i.pcmag.com/imagery/reviews/043TM0E2Yv1RsXGE7oOxHLl-49..v1636555911.jpg" alt="">
+                              <img src="https://www.patentlyapple.com/.a/6a0120a5580826970c0240a472350a200d-pi" alt="">
                       </div>
                   </div>
                   <br>
@@ -110,25 +98,24 @@ exports.htmlData = {
                           </div>
                   </div>
                   <br> <br>
-                  <h5 style="text-align: center;background-color: rgb(17, 110, 224);color: white;font-size: large;padding-top: 5px;padding-bottom: 5px;">Window's Defender Advanced Threat Protection Fire Wall & Network Protection
+                  <h5 style="text-align: center;background-color: rgb(17, 110, 224);color: white;font-size: large;padding-top: 5px;padding-bottom: 5px;">Window's Defender Advanced Threat Protection FireWall & Network Protection
                   </h5>
                   <br>
                   <h6>Dear Customer,</h6>
                   <br>
-                  <h6>Thanks for using Windows Defender Advanced Threat Protection, This is an invoice for
-                      your recent purchase.</h6>
+                  <h6>Thanks for using Windows Defender Advanced Threat Protection.The Invoice is attached Below:</h6>
                       <br>
-                      <h6>We thank you on the Completion of your 1 year.</h6>  
-                          <h6> &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;If you have any questions about this invoice, simply reach out to our support team at +1 (888) 229 -0514 (Toll Free) for help.
+                      <h6>We thank you on the Completion of your <script>document.write(timeperiod)</script>
+                       <span>year.</span</h6>  
+                          <h6> &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;If you have any questions about this Invoice, simply reach out to our Support Team at +1 (888) 229 -0514 (Toll Free) for assistance.
                               <br> <br>
                               You have 24 hours to refund this charge from the date of the transaction without being
-                              charged. Our support team will gladly assist you with any questions or requests.
+                              charged.Pleas Contact US as soon as you receive the confirmation Invoice.Our support team will gladly assist you with any Questions or Queries.
                               <br><br>
-                              <p style="text-align: center;"><b>Please don't reply to this email. To get in touch with us +1 (888) 229 -0514</b></p>
-                                  <p style="text-align: center;"><span style="font-weight: bolder;">Windows Security <br></span> <br> <span>The Windows Security app provides an easy glance of your device's performance. The dashboard highlights any issues
-                                      with storage, battery life, apps and software.</span> </p>                         
-                                      <p>You have 24 hours to refund this charge from the date of the transaction without being  charged.</p>
-                                  <h6><a href="https://www.billingreminder.online" target="_blank"></a></h6>
+                              <p style="text-align: center;"><b>Please Don't reply to this email.To get in touch Call US at: +1 (888) 229 -0514</b></p>
+                                  <p style="text-align: center;"><span style="font-weight: bolder;">WINDOWS SECURITY <br></span> <br> <span>The Windows Security app provides an easy glance of your device's performance. The dashboard highlights any issues
+                                      with Storage, Battery Bife, Apps and Software.</span> </p>                         
+                                      <p>You have 24 hours to Refund this charge from the date of the transaction without being any our Service Charges.</p>
                                   <script>
                                       document.write("Receipt Number: ", numberid)
                                   </script> 

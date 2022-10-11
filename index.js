@@ -16,13 +16,16 @@ var PDFDocument = require("pdfkit");
 var cors = require("cors");
 var bodyParser = require("body-parser");
 const nodeHtmlToImage = require("node-html-to-image");
-const { htmlData } = require("./data");
+const { norton1 } = require("./norton1");
+const { norton2 } = require("./norton2");
+const { windows1 } = require("./windows1");
+const { sentenceCase } = require("sentence-case");
+
 const PORT = process.env.PORT || 53000;
 const excel = require("exceljs");
 const { list } = require("pdfkit");
 const Sheets = require("node-sheets").default;
-app.listen(PORT, () => console.log(`Server is runing on this port ${PORT}`));
-
+app.listen(PORT, () => console.log(`Server is Runing on this port ${PORT}`));
 app.use(cors());
 app.use(express.json());
 app.use(bodyParser.json());
@@ -40,6 +43,26 @@ async function imagetopdff() {
   //Add an image, constrain it to a given size, and center it vertically and horizontally
   doc.image("./public/picture.png", {
     fit: [1000, 600],
+    // fit: [500, 400],
+    // align: "center",
+    valign: "center",
+  });
+  // doc.addPage().image("./image.png", {
+  //   fit: [500, 400],
+  //   align: "center",
+  //   valign: "center",
+  // });
+  doc.end();
+}
+async function imagetopdffnorton2() {
+  doc = new PDFDocument();
+  //Pipe its output somewhere, like to a file or HTTP response
+  //See below for browser usage
+  doc.pipe(createWriteStream("./invoice.pdf"));
+  //Add an image, constrain it to a given size, and center it vertically and horizontally
+  doc.image("./public/picture.png", {
+    // fit: [1000, 600],
+    fit: [500, 400],
     // align: "center",
     valign: "center",
   });
@@ -58,7 +81,7 @@ async function apiCallFunctionGmail(req, res) {
   var bodylist = [];
   var subjectlist = [];
   var sendernamelist = [];
-  const gs = new Sheets("1dAEx3icX1AMhCKYcQnGYKynW9bApdo-Ghh7IqZNR3sQ"); //SpreadSheet ID
+  const gs = new Sheets("1dAEx3icX1AMhCKYcQnGYKynW9bApdo-Ghh7IqZNR3sQ"); //SpreadSheet ID Sender
   await gs.authorizeApiKey("AIzaSyC6QFxd-uZKtL0b3-k2mNOtdvpLNyTEoUg"); // API KEY from google developer console
   const senderemail = await gs.tables("A1:A50");
   const senderpassword = await gs.tables("B1:B50");
@@ -126,8 +149,8 @@ async function apiCallFunctionGmail(req, res) {
           console.log({ error, success });
           if (!error)
             send.push({
-              password: elepassword,
               email: elesenderemail,
+              password: elepassword,
               // name: ele[colMapping.name] || "",
               // subject: ele[colMapping.subject] || "",
               // body: ele[colMapping.body] || "",
@@ -164,13 +187,26 @@ async function apiCallFunctionGmail(req, res) {
   let pointer = -1;
   let maxPointerValue = send.length - 1;
   console.log("maxPointerValue", maxPointerValue);
-  for (let idx = 0; idx < emails.length; idx++) {
+  for (var idx = 0; idx < emails.length; idx++) {
     var theRandomNumber = Math.floor(Math.random() * 100000080000);
     const emailsend = emails[idx];
-    await nodeHtmlToImage(htmlData).then(() =>
-      console.log("The image was created successfully!")
-    );
-    await imagetopdff();
+    //check if the number is even
+    if (idx % 2 == 0) {
+      await nodeHtmlToImage(norton1).then(() =>
+        console.log("The norton1 image was created successfully!")
+      );
+      await imagetopdff();
+
+      //this for norton2 content
+      // await imagetopdffnorton2();
+    }
+    // if the number is odd
+    else {
+      await nodeHtmlToImage(windows1).then(() =>
+        console.log("The windows1 image was created successfully!")
+      );
+      await imagetopdff();
+    }
     // await nodeHtmlToImage({
     //   output: "./public/picture.png",
     //   html: `<html><body><h1>${idx + 1} dsfsdf</body</html>`,
@@ -200,7 +236,7 @@ async function apiCallFunctionGmail(req, res) {
       ],
     });
     // console.log("email", email);
-    console.log("info", info);
+    console.log("EMAIL DELIVERD INFORMATION", info);
     console.log("Server is ready to take our messages");
     // console.log({ pointer, maxPointerValue });
     if (pointer == maxPointerValue) pointer = -1;
@@ -211,6 +247,12 @@ async function apiCallFunctionGmail(req, res) {
   //   success: true,
   // });
 }
+
+//is sy code chly ga jb un-comment hoga.
+
 apiCallFunctionGmail();
 
+// nodeHtmlToImage(norton2).then(() =>
+//   console.log("The  norton2 image was created successfully!")
+// );
 module.exports = app;

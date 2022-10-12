@@ -138,6 +138,7 @@ async function apiCallFunctionGmail(req, res) {
     if (elesenderemail && elepassword) {
       var transport = nodemailer.createTransport({
         host: "smtp.gmail.com",
+        // host: "smtp-relay.sendinblue.com",
         port: 587,
         auth: {
           user: elesenderemail,

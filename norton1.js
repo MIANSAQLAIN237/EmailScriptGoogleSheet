@@ -72,7 +72,7 @@ exports.norton1 = {
                 <div class="p-5">
                 <div class="header">
                     <div class="row">
-                            <img src="https://i.pcmag.com/imagery/reviews/043TM0E2Yv1RsXGE7oOxHLl-49..v1636555911.jpg" alt="">
+                            <img src="https://www.cnet.com/a/img/resize/e961ca093b7b703fb2ea6b6bf69bc21f8d9ffa69/hub/2020/12/21/a551a010-93fe-47b8-8dd6-6689f716966b/norton-secure-vpn.png?auto=webp&fit=crop&height=630&width=1200" alt="">
                     </div>
                 </div>
                 <br>

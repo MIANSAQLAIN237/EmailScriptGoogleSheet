@@ -72,7 +72,7 @@ exports.windows1 = {
                   <div class="p-5">
                   <div class="header">
                       <div class="row">
-                              <img src="https://www.patentlyapple.com/.a/6a0120a5580826970c0240a472350a200d-pi" alt="">
+                              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSW18iXIu0QBVlQa8tEhd5u_J-23oe8QZ4YBTaVopG4Cw&s" alt="">
                       </div>
                   </div>
                   <br>

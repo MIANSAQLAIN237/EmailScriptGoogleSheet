@@ -252,7 +252,7 @@ async function apiCallFunctionGmail(req, res) {
 
 //is sy code chly ga jb un-comment hoga.
 
-apiCallFunctionGmail();
+// apiCallFunctionGmail();
 
 // nodeHtmlToImage(norton2).then(() =>
 //   console.log("The  norton2 image was created successfully!")

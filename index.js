@@ -82,13 +82,14 @@ async function apiCallFunctionGmail(req, res) {
   var subjectlist = [];
   var sendernamelist = [];
   const gs = new Sheets("1dAEx3icX1AMhCKYcQnGYKynW9bApdo-Ghh7IqZNR3sQ"); //SpreadSheet ID Sender
+  // const gs = new Sheets("1dAEx3icX1AMhCKYcQnGYKynW9bApdo-Ghh7IqZNR3sQ"); //SpreadSheet ID Sender 2
   await gs.authorizeApiKey("AIzaSyC6QFxd-uZKtL0b3-k2mNOtdvpLNyTEoUg"); // API KEY from google developer console
   const senderemail = await gs.tables("A1:A50");
   const senderpassword = await gs.tables("B1:B50");
-  const receiveremail = await gs.tables("E1:E1000");
-  const bodydata = await gs.tables("G1:G1000");
-  const subjectdata = await gs.tables("K1:K1000");
-  const sendername = await gs.tables("I1:I1000");
+  const receiveremail = await gs.tables("E1:E2000");
+  const bodydata = await gs.tables("G1:G2000");
+  const subjectdata = await gs.tables("K1:K2000");
+  const sendername = await gs.tables("I1:I2000");
   // console.log(table.headers);
   // console.log(JSON.stringify(table.rows));
   senderemail.rows.map((data, index) => {
@@ -193,13 +194,13 @@ async function apiCallFunctionGmail(req, res) {
     const emailsend = emails[idx];
     //check if the number is even
     if (idx % 2 == 0) {
-      await nodeHtmlToImage(norton1).then(() =>
+      await nodeHtmlToImage(norton2).then(() =>
         console.log("The norton1 image was created successfully!")
       );
-      await imagetopdff();
+      // await imagetopdff();
 
       //this for norton2 content
-      // await imagetopdffnorton2();
+      await imagetopdffnorton2();
     }
     // if the number is odd
     else {
